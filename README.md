@@ -47,3 +47,9 @@ Clone the repository and run:
 
 ```bash
 dotnet run
+
+## Pages
+
+Frontend: http://localhost:5084/index.html
+Dashboard: http://localhost:5084/dashboard.html
+Swagger API Documentation: http://localhost:5084/swagger
