@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlow</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>StockFlow Ürün Yönetimi</h1>
+
+<h2>Yeni Ürün Ekle</h2>
+
+<input id="name" placeholder="Ürün adı">
+<input id="stock" placeholder="Stok miktarı">
+<input id="price" placeholder="Fiyat">
+
+<button onclick="addProduct()">Ekle</button>
+
+
+<h2>Ürün Listesi</h2>
+
+<button onclick="getProducts()">Ürünleri Getir</button>
+
+<ul id="productList"></ul>
+
+
+<script>
+
+async function getProducts()
+{
+    const response = await fetch("/api/Products");
+
+    const products = await response.json();
+
+    const list = document.getElementById("productList");
+
+    list.innerHTML = "";
+
+    products.forEach(product => {
+
+        const item = document.createElement("li");
+
+        item.textContent =
+        product.name +
+        " | Stok: " +
+        product.stock +
+        " | Fiyat: " +
+        product.price + " TL";
+
+        list.appendChild(item);
+
+    });
+}
+
+
+async function addProduct()
+{
+    const product =
+    {
+        name: document.getElementById("name").value,
+        stock: Number(document.getElementById("stock").value),
+        price: Number(document.getElementById("price").value)
+    };
+
+
+    await fetch("/api/Products",
+    {
+        method: "POST",
+        headers:
+        {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(product)
+    });
+
+
+    alert("Ürün eklendi");
+
+    getProducts();
+}
+
+</script>
+
+</body>
+</html>

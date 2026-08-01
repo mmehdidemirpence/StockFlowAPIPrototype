@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>StockFlow Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>StockFlow Dashboard</h1>
+
+<h2>Ürünler</h2>
+<button onclick="getProducts()">Ürünleri Listele</button>
+<ul id="products"></ul>
+
+
+<h2>Kategoriler</h2>
+<button onclick="getCategories()">Kategorileri Listele</button>
+<ul id="categories"></ul>
+
+
+<h2>Müşteriler</h2>
+<button onclick="getCustomers()">Müşterileri Listele</button>
+<ul id="customers"></ul>
+
+
+<h2>Tedarikçiler</h2>
+<button onclick="getSuppliers()">Tedarikçileri Listele</button>
+<ul id="suppliers"></ul>
+
+
+<script>
+
+async function getProducts()
+{
+    let response = await fetch("/api/Products");
+    let data = await response.json();
+
+    document.getElementById("products").innerHTML =
+    data.map(x => `<li>${x.name} - ${x.stock} adet</li>`).join("");
+}
+
+
+async function getCategories()
+{
+    let response = await fetch("/api/Categories");
+    let data = await response.json();
+
+    document.getElementById("categories").innerHTML =
+    data.map(x => `<li>${x.name}</li>`).join("");
+}
+
+
+async function getCustomers()
+{
+    let response = await fetch("/api/Customers");
+    let data = await response.json();
+
+    document.getElementById("customers").innerHTML =
+    data.map(x => `<li>${x.name} - ${x.email}</li>`).join("");
+}
+
+
+async function getSuppliers()
+{
+    let response = await fetch("/api/Suppliers");
+    let data = await response.json();
+
+    document.getElementById("suppliers").innerHTML =
+    data.map(x => `<li>${x.companyName}</li>`).join("");
+}
+
+</script>
+
+</body>
+</html>
