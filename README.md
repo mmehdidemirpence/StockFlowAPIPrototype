@@ -44,7 +44,9 @@ StockFlowAPI is a stock management system developed with ASP.NET Core Web API.
 ## Pages
 
 Frontend: http://localhost:5084/index.html
+
 Dashboard: http://localhost:5084/dashboard.html
+
 Swagger API Documentation: http://localhost:5084/swagger
 
 
