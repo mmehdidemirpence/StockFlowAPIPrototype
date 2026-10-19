@@ -1,4 +1,4 @@
-# StockFlowAPI
+# StockFlowAPI Prototype
 
 StockFlowAPI is a stock management system developed with ASP.NET Core Web API.
 
